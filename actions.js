@@ -137,7 +137,7 @@ function createNote() {
 
     // ajoute un id a la balise cree
     idNote=idNote+1;
-    noteLine.setAttribute("id",idNote+"tr");
+    noteLine.setAttribute("id","trnote");
 
     Enote = document.createElement("td");
     Ematiere = document.createElement("td");
@@ -167,7 +167,7 @@ function ajoutNote() {
     if (note.length !=0 && matiere!=0){
         if (note<=20 && note >=0) {
             //verifie si la matiere a deja ete ajoute
-            for (let index = 0; index < tableauMat.length; index++) {
+            for (let index = 0; index < idNote; index++) {
                 if (tableauMat[index] == matiere) {
                     alert("cette matiere a deja ete ajoute!");
                     return false;
@@ -200,7 +200,7 @@ function ajoutNote() {
                 noteEtudiant.removeChild(eltSupp);
                 
                 // parcours le tableau des matieres et supprime les matieres correspondante
-                for (let index = 0; index < tableauMat.length; index++) {
+                for (let index = 0; index < idNote; index++) {
                     if (tableauMat[index] == n1) {
                         tableauMat.splice(index,2);
                     }
@@ -235,7 +235,7 @@ function saveData(){
     date = document.getElementById("date").value;
 
     if (nom.length !=0 && prenom.length!=0 && naissance.length!=0 && parcours!=0
-    && taille.length!=0 && matricule.length!=0 && sexe!="" && date.length!=0 && idNote!=0) {
+    && taille.length!=0 && matricule.length!=0 && sexe!="" && date.length!=0 && tableauMat.length!=0) {
         existe = 0;
         //verifie si un etudiant existe deja
         for (let index = 0; index < tableauGlobal.length; index++) {
@@ -270,10 +270,11 @@ function saveData(){
                 Enregistrer.disabled = true;
     
                 // efface les notes qui ont été crées
-                for (let index = 1; index < idNote+1; index++) {
-                    var tr = document.getElementById(index+"tr");
-                    tr.innerHTML='';   
-                }
+                // for (let index = 1; index < idNote+1; index++) {
+                //     var tr = document.getElementById(index+"tr");
+                //     tr.innerHTML='';   
+                // }
+                noteEtudiant.remove(noteLine);
                 
                 // ajoute les données dans le tableau final
                 tableauEtu.push(id,nom,prenom,naissance,parcours,matricule,taille,sexe.value,date);
