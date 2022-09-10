@@ -167,7 +167,7 @@ function ajoutNote() {
     if (note.length !=0 && matiere!=0){
         if (note<=20 && note >=0) {
             //verifie si la matiere a deja ete ajoute
-            for (let index = 0; index < idNote; index++) {
+            for (let index = 0; index < tableauMat.length; index++) {
                 if (tableauMat[index] == matiere) {
                     alert("cette matiere a deja ete ajoute!");
                     return false;
