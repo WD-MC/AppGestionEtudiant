@@ -225,7 +225,6 @@ function ajoutNote() {
 /*Enregistrer les donnees de l'etudiant*/
 function saveData(){
 
-    Annuler.style.display = 'none';
 
     nom = document.getElementById("nom").value;
     prenom = document.getElementById("prenom").value;
@@ -319,7 +318,7 @@ function saveData(){
         
     }else{
         alert ("veuillez remplir tous les informations et ajouter les notes de l'étudiant");
-        return false;
+        //return false;
     }
 }
 
@@ -415,7 +414,7 @@ function validerModification(id) {
             
             return modelt;
         }else{
-            alert ("veuillez remplir tous les informations et ajouter les notes de l'étudiant");
+            alert ("veuillez remplir tous les informations");
             return false;
         }
     }
