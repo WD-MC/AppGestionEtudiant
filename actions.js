@@ -137,7 +137,7 @@ function createNote() {
 
     // ajoute un id a la balise cree
     idNote=idNote+1;
-    noteLine.setAttribute("id","trnote");
+    noteLine.setAttribute("id",idNote+"tr");
 
     Enote = document.createElement("td");
     Ematiere = document.createElement("td");
@@ -270,11 +270,10 @@ function saveData(){
                 Enregistrer.disabled = true;
     
                 // efface les notes qui ont été crées
-                // for (let index = 1; index < idNote+1; index++) {
-                //     var tr = document.getElementById(index+"tr");
-                //     tr.innerHTML='';   
-                // }
-                noteEtudiant.remove(noteLine);
+                for (let index = 1; index < idNote+1; index++) {
+                    var tr = document.getElementById(index+"tr");
+                    tr.innerHTML='';   
+                }
                 
                 // ajoute les données dans le tableau final
                 tableauEtu.push(id,nom,prenom,naissance,parcours,matricule,taille,sexe.value,date);
