@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestionNote</title>
+    <link rel="stylesheet" href="CSS/bootstrap.css"/>
+    <link rel="stylesheet" href="CSS/font-awesome-4.7.0/css/font-awesome.css"/>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="row text-center mt-4" style="border-bottom: 2px solid chocolate;">
+            <div class=" col col-md-6"><h2>Gestionnaire Des Etudiants</h2></div>
+            <div class="col col-md-6">
+                <button id="nouveau" class="btn-primary" onclick="afficher_form()">Nouveau</button>
+                <button id="annuler" class="btn-danger" onclick="annuler_form();">Annuler</button>
+                <i class="fa fa-em"></i>
+            </div>
+        </div>
+
+        <br><br>
+        <h3 style="color: darkslateblue;"> Liste des Etudiants</li></h3>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr style="text-align: center;">
+                    <th>Matricule</th>
+                    <th>Noms et Prenoms</th>
+                    <th>Lieu de Naissance</th>
+                    <th>Parcours</th>
+                    <th>Sexe</th>
+                    <th>Date de naissance</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody  id="createStudent">
+            </tbody>
+        </table>
+
+        <div class="row" id="newStudent" style="display: none;">
+            <h4 style="color: darkslateblue;">Enregistrer un eleve</h4><br/>
+            
+                <div class="col col-md-6 mt-2">
+                    <form id="form">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input type="text" name="nom"  id="nom" class="form-control" pattern="[A-Za-z]{50}" required/>
+
+                        <label for="prenom" class="form-label mt-2" >Prenom</label>
+                        <input type="text"  name="prenom" id="prenom" class="form-control" pattern="[A-Za-z]{50}" required/>
+
+                        <label for="naissance" class="form-label mt-2">Lieu de Naissance</label>
+                        <input type="text" name="naissance" id="naissance" class="form-control" pattern="[A-Za-z]{50}"required/>
+                    </form>
+                </div>
+                <div class="col col-md-6 mt-2">
+                    <form id="form1">
+                        <label for="parcours" class="form-label">Parcours</label>
+                        <select name="parcours" class="form-select" id="parcours" required>
+                            <option value="0">Choisir un parcours</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Developpement web">Developpement web</option>
+                            <option value="Art Numerique">Art Numerique</option>
+                        </select>
+                    </form>
+
+                    <div class="row">
+                        <div class="col col-md-6 mt-2">
+                            <form id="form2">
+                                <label for="matricule" class="form-label">Matricule</label>
+                                <input type="number" name="taille" id="matricule" class="form-control" required/>
+                            </form>
+                        </div>
+                        <div class="col col-md-6 mt-2">
+                            <form id="form3">
+                            <label for="taille" class="form-label">Taille</label>
+                            <input type="number" class="form-control" id="taille" required/></form>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col col-md-6 mt-2">
+                            <form id="form4">
+                            <label for="sexe" class="form-label">Sexe</label><br/>
+                            <input type="radio" class="form-check-inline" id="sexe" value="Homme" name="sexe" style="margin: 8px;" required/>Homme   
+                            <input type="radio" class="form-check-inline " id="sexe1" value="Femme" name="sexe" style="margin: 8px;" required/>Femme
+                            </form>
+                        </div>
+                        <div class="col col-md-6 mt-2">
+                            <form id="form5">
+                            <label for="date" class="form-label">Date de Naissance</label>
+                            <input type="date" name = "date" id="date" class="form-control" required/></form>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <br/> <br/> <hr/>
+        <h4 style="color: darkslateblue;">Notes</h4>
+        <div id="noteStudent" class="row" style="display: none;">
+            <div class="col col-md-4">
+                <form id="form6">
+                    <label for="matiere" class="form-label">Matieres</label>
+                    <select name="mat" id="matiere" class="form-select">
+                        <option value="0">Choisir une matiere</option>
+                        <option value="PHP">PHP</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Dom"690932003>Dom</option>
+                        <option value="Html/Css">Html/Css</option>
+                        <option value="Html/Css">JQuery</option>
+                        <option value="Html/Css">Ajax</option>
+                        <option value="Html/Css">POO</option>
+                        <option value="Html/Css">Structure de donnée</option>
+                    </select>
+                </form>
+            </div>
+            <div class="col col-md-4">
+                <form id="form7">
+                    <label name="note" class="form-label">Note</label>
+                    <input type="number" id="note" name="note" class= "form-control" required/>
+                </form>
+            </div>
+            <div class="col col-md-4 mt-4">
+                <button name="Ajouter"  id="ajouter" onclick= "ajoutNote();" class="btn btn-success">Ajouter</button>
+            </div>
+        </div>
+
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th>Matiere</th>
+                    <th>Note/20</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="noteEtudiant">
+            </tbody>
+        </table>
+
+        <button id="enregistrer" onclick="saveData();" class="btn btn-success">Enregistrer</button>
+        <br/><br/><br/>
+        <hr>
+
+        <h3 style="color: darkslateblue;">Informations de l'étudiant</h3><br/>
+        <div class="row border-dark" id="zone">
+            
+            <h4 id="infosEtu5">Matricule: </h4>
+            <div class="col col-md-6" style="border-right: 1px solid black;">
+            
+                <p id="infosEtu">Noms & Prénom:</p>
+                <p id="infosEtu1">Date et lieu de Naissance:</p>
+                <p id="infosEtu2" >Sexe:</p>
+                <p id="infosEtu3">Parcours:</p>
+                <p id="infosEtu4" >Taille:</p>
+                <!-- <p id="infosEtu5">Poids:</p> -->
+            </div>
+            <div class="col col-md-6">
+                <h4>Notes</h4><br/>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Matiere</th>
+                            <th>Notes/20</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listeMatiere">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br/><br/>
+        <div>
+            <button id="infosEtu" onclick="PromptMessage();" class="btn btn-success">voir les détails</button>
+            <button id="masquer" onclick="masquer();" class="btn btn-primary">Masquer</button>
+            <button id="aff" onclick="Afficher();" class="btn btn-primary">Afficher</button>
+        </div>
+        <br/><br/><br/>
+    </div>
+
+    
+    <script lang="javaScript" src="actions.js"></script>
+    <script lang="javaScript" src="Update.js"></script>
+    
+</body>
+</html>
